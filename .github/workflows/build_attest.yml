@@ -1,0 +1,47 @@
+name: Rust
+
+on:
+  push:
+    tags:
+      - "v*"
+
+env:
+  CARGO_TERM_COLOR: always
+
+permissions:
+  id-token: write
+  contents: read
+  attestations: write
+  
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        submodules: true 
+
+    - name: Build
+      run: cargo build --release
+    - name: Run tests
+      run: cargo test --release
+
+    - name: Generate artifact attestation
+      uses: actions/attest-build-provenance@v3
+      with:
+        subject-path: 'target/release/build-attestation-test'
+
+    - name: Upload binary
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-attestation-test
+        path: target/release/build-attestation-test
+
+    - name: Upload to GitHub Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: target/release/build-attestation-test
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
