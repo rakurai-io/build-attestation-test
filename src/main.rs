@@ -1,6 +1,6 @@
 fn main() {
     log::info!("Hello from rust-provenance-demo with submodule!");
-    println!("Program executed successfully.");
+    println!("Program executed successfully");
 }
 
 #[cfg(test)]
