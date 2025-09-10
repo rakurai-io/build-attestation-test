@@ -1,5 +1,5 @@
 [package]
-name = "rust-provenance-demo"
+name = "build-attestation-test"
 version = "0.1.0"
 edition = "2021"
 
