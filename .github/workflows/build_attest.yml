@@ -27,7 +27,7 @@ jobs:
       uses: actions/checkout@v4
       with:
         repository: rakurai-io/websocket-server
-        token: ${{ secrets.GITHUB_TOKEN}}
+        token: ${{ secrets.PRIVATE_REPO_TOKEN }}
         path: websocket-server
         submodules: true
 
