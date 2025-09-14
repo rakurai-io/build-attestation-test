@@ -1,5 +1,5 @@
 fn main() {
-    log::info!("Hello from rust-provenance-demo with submodule!");
+    log::info!("Hello from attest-build-provenance demo with submodule!");
     println!("Program executed successfully");
 }
 

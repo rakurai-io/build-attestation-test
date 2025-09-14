@@ -23,8 +23,17 @@ jobs:
       with:
         submodules: true 
 
+    - name: checkout private repo
+      uses: actions/checkout@v4
+      with:
+        repository: rakurai-io/websocket-server
+        token: ${{ secrets.GITHUB_TOKEN}}
+        path: websocket-server
+        submodules: true
+
     - name: Build
-      run: cargo build --release
+      run: cargo build --release -p websocket-server
+
     - name: Run tests
       run: cargo test --release
 
